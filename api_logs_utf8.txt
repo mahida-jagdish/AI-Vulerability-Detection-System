@@ -1,0 +1,100 @@
+﻿api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+api-1  |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api-1  |     raise exc
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+api-1  |     await app(scope, receive, sender)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 715, in __call__
+api-1  |     await self.middleware_stack(scope, receive, send)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 735, in app
+api-1  |     await route.handle(scope, receive, send)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 288, in handle
+api-1  |     await self.app(scope, receive, send)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 76, in app
+api-1  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api-1  |     raise exc
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+api-1  |     await app(scope, receive, sender)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 73, in app
+api-1  |     response = await f(request)
+api-1  |                ^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 301, in app
+api-1  |     raw_response = await run_endpoint_function(
+api-1  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
+api-1  |     return await run_in_threadpool(dependant.call, **values)
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+api-1  |     return await anyio.to_thread.run_sync(func)
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/to_thread.py", line 63, in run_sync
+api-1  |     return await get_async_backend().run_sync_in_worker_thread(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 2502, in run_sync_in_worker_thread
+api-1  |     return await future
+api-1  |            ^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 986, in run
+api-1  |     result = context.run(func, *args)
+api-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/app/app/routes/scans.py", line 62, in create_scan
+api-1  |     db.commit()
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+api-1  |     trans.commit(_to_root=True)
+api-1  |   File "<string>", line 2, in commit
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+api-1  |     ret_value = fn(self, *arg, **kw)
+api-1  |                 ^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+api-1  |     self._prepare_impl()
+api-1  |   File "<string>", line 2, in _prepare_impl
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+api-1  |     ret_value = fn(self, *arg, **kw)
+api-1  |                 ^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+api-1  |     self.session.flush()
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+api-1  |     self._flush(objects)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+api-1  |     with util.safe_reraise():
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api-1  |     raise exc_value.with_traceback(exc_tb)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+api-1  |     flush_context.execute()
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+api-1  |     rec.execute(self)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+api-1  |     util.preloaded.orm_persistence.save_obj(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+api-1  |     _emit_insert_statements(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+api-1  |     result = connection.execute(
+api-1  |              ^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+api-1  |     return meth(
+api-1  |            ^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+api-1  |     return connection._execute_clauseelement(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+api-1  |     ret = self._execute_context(
+api-1  |           ^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+api-1  |     return self._exec_single_context(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+api-1  |     self._handle_dbapi_exception(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+api-1  |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  |   File "/usr/local/lib/python3.11/site-packages/psycopg/cursor.py", line 97, in execute
+api-1  |     raise ex.with_traceback(None)
+api-1  | sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedColumn) column "advanced_mode" of relation "scan_jobs" does not exist
+api-1  | LINE 1: ..._url, target_host, scope_mode, authorization_ack, advanced_m...
+api-1  |                                                              ^
+api-1  | [SQL: INSERT INTO scan_jobs (id, target_url, target_host, scope_mode, authorization_ack, advanced_mode, generate_poc, ai_instructions, notes, status, progress, requested_by_user_id, celery_task_id, started_at, finished_at, error_message, created_at, updated_at) VALUES (%(id)s::VARCHAR, %(target_url)s::VARCHAR, %(target_host)s::VARCHAR, %(scope_mode)s::VARCHAR, %(authorization_ack)s, %(advanced_mode)s, %(generate_poc)s, %(ai_instructions)s::VARCHAR, %(notes)s::VARCHAR, %(status)s::VARCHAR, %(progress)s::INTEGER, %(requested_by_user_id)s::VARCHAR, %(celery_task_id)s::VARCHAR, %(started_at)s::TIMESTAMP WITHOUT TIME ZONE, %(finished_at)s::TIMESTAMP WITHOUT TIME ZONE, %(error_message)s::VARCHAR, %(created_at)s::TIMESTAMP WITHOUT TIME ZONE, %(updated_at)s::TIMESTAMP WITHOUT TIME ZONE)]
+api-1  | [parameters: {'id': '6d189542-fb3f-42e6-8cc7-300bc472f89f', 'target_url': 'https://deodap.in/', 'target_host': 'deodap.in', 'scope_mode': 'authorized', 'authorization_ack': True, 'advanced_mode': True, 'generate_poc': True, 'ai_instructions': '', 'notes': '', 'status': 'queued', 'progress': 0, 'requested_by_user_id': '875f598e-d102-4c3a-a199-741dd4d5d00d', 'celery_task_id': None, 'started_at': None, 'finished_at': None, 'error_message': None, 'created_at': datetime.datetime(2026, 3, 5, 17, 1, 1, 898390), 'updated_at': datetime.datetime(2026, 3, 5, 17, 1, 1, 898393)}]
+api-1  | (Background on this error at: https://sqlalche.me/e/20/f405)
